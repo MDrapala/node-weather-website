@@ -1,5 +1,6 @@
 const request = require('request')
 
+
 const forecast = (latitude, longitude, callback) => {
     const url = 'https://api.darksky.net/forecast/db9366634a8c0968f90291a0efbc7227/'+ latitude + ',' + longitude +'?units=si&lang=fr'
     
@@ -9,7 +10,8 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('Unable to find location', undefined)
         } else {
-            callback(undefined, body.daily.data[0].summary + ' / ' + body.currently.temperature + '°c / ' + body.currently.precipProbability + '%')
+
+            callback(undefined, body.daily.data[0].summary + ' / +' + body.daily.data[0].temperatureHigh + '°c / -' + body.daily.data[0].temperatureLow + '°c / ' + body.currently.temperature + '°c / ' + body.currently.precipProbability + '%')
         }
     })
 }
